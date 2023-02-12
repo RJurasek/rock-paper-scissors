@@ -3,18 +3,44 @@ function getComputerChoice() {
   let i = Math.floor(Math.random() * (2 - 0 + 1) + 0);
   return array[i];
 }
- 
-const compChoice = getComputerChoice();
-const playerChoice = "ROCK";
+ let playerScore = 0;
+ let compScore = 0;
 
-function playRound(playerChoice, compChoice) {
-    return (playerChoice.toLowerCase() == "rock" && compChoice == "scissors") ? "You Win! Rock beats scissors!"
-    : (playerChoice.toLowerCase() == "paper" && compChoice == "rock") ? "You Win! Paper beats rock!"
-    : (playerChoice.toLowerCase() == "scissors" && compChoice == "paper") ? "You Win! Scissors beats paper!"
-    : (playerChoice.toLowerCase() == "scissors" && compChoice == "rock") ? "You Lose! Rock beats scissors!"
-    : (playerChoice.toLowerCase() == "rock" && compChoice == "paper") ? "You Lose! Paper beats rock!"
-    : (playerChoice.toLowerCase() == "paper" && compChoice == "scissors") ? "You Lose! Scissors beats paper!"
-    : "I'ts a tie! try again!";
+const compChoice = getComputerChoice();
+const playerChoice = prompt("Chose Rock, Paper, or Scissors.");
+
+function game() {
+  while (playerScore < 5 || compScore < 5);
+  playRound();
+  
 }
 
+
+function playRound(playerChoice, compChoice) {
+      if (playerChoice.toLowerCase() == "rock" && compChoice == "scissors") {
+        playerScore ++;
+        return "You Win! Rock beats scissors!"; 
+    } else if (playerChoice.toLowerCase() == "paper" && compChoice == "rock") {
+        playerScore++;
+        return "You Win! Paper beats rock!";
+    } else if (playerChoice.toLowerCase() == "scissors" && compChoice == "paper") { 
+        playerScore++;
+        return "You Win! Scissors beats paper!"; 
+    } else if (playerChoice.toLowerCase() == "scissors" && compChoice == "rock") {
+        compScore++;
+        return "You Lose! Rock beats scissors!";
+    } else if (playerChoice.toLowerCase() == "rock" && compChoice == "paper") {
+        compScore++;
+        return "You Lose! Paper beats rock!";
+    } else if (playerChoice.toLowerCase() == "paper" && compChoice == "scissors") { 
+        compScore++;
+        return "You Lose! Scissors beats paper!";
+    } else if (playerChoice.toLowerCase() == compChoice) { 
+        return "I'ts a tie! try again!"; 
+    } else {
+        return "Enter valid selection! Refresh page.";
+    }
+} 
+
 console.log(playRound(playerChoice, compChoice));
+console.log(playerScore);
